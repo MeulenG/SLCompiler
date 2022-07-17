@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text;
 
 class ReadFile {
     public static void Main(string[] args)
@@ -8,21 +9,8 @@ class ReadFile {
             Console.WriteLine("File not given");
         }
         else {
-            string text = System.IO.File.ReadAllText(args, FileMode.Open, FileMode.Read);
+            string text = File.ReadAllText(args[1]);
+            Console.WriteLine(text);
         }
     }
 }
-class Parse {
-    public static int Parse() {
-        List<T>() = new List <T>();
-        int acc = 0;
-
-        for (0; text.Length;)
-        {
-            
-
-        }
-
-    }   
-}
-
