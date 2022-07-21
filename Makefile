@@ -1,13 +1,8 @@
 all:
-	dotnet build
-
-fast:
-	dotnet run HaxorParser/HaxorParser.cs HelloWorld.haxor
-
+	clang++ main.cpp HaxorLexer/HaxorLexer.cpp
+ 
 clean:
-	dotnet clean
-	rm ./bin -r
-	rm ./obj -r
+	rm -rf a.out
 	rm -rf .vscode/targets.log
 	rm -rf .vscode/dryrun.log
 	rm -rf .vscode/configurationCache.log
