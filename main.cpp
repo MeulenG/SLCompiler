@@ -14,35 +14,29 @@
 
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
-
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "HaxorLexer/Lexer.h"
+#include "HaxorParser/Ast.h"
+#include "HaxorParser/Parser.h"
 using namespace std;
 
 int main (int argc, char* argv[]) // or char** argv 
 {
-    string filename = argv[1];
-    ifstream input;
+  // Install standard binary operators.
+  // 1 is lowest precedence.
+  BinopPrecedence['<'] = 10;
+  BinopPrecedence['+'] = 20;
+  BinopPrecedence['-'] = 20;
+  BinopPrecedence['*'] = 40; // highest.
 
-    input.open(filename);
-    // Check input parameters
-    if (argc == 1) {
-        printf("Haxor: invalid number of arguments\n");
-        return -1;
-    }
-    else if(!input.is_open()) {
-        cout << "Unable to open file";
-        return -1;
-    }
-    else {
-        while (input)
-        {
-            string line;
-            getline(input, line);
-            cout << line << '\n';
-        }   
-    }
-  input.close();
+  // Prime the first token.
+  fprintf(stderr, "ready> ");
+  getNextToken();
+
+  // Run the main "interpreter loop" now.
+  MainLoop();
+
   return 0;
 }
