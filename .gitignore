@@ -45,7 +45,6 @@ CTestTestfile.cmake
 _deps
 .fake
 
-build/
-out/
-external/
+Step1_build/
+externallibs/
 .dccache
