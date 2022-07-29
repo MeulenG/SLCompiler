@@ -22,21 +22,50 @@
 #include "HaxorParser/Parser.h"
 using namespace std;
 
+void ReadFile() {
+#ifdef READFILE
+    string filename = argv[1];
+    ifstream input;
+
+    input.open(filename);
+    // Check input parameters
+    if (argc == 1) {
+        printf("Haxor: invalid number of arguments\n");
+        return -1;
+    }
+    else if (!input.is_open()) {
+        cout << "Unable to open file";
+        return -1;
+    }
+    else {
+        while (input)
+        {
+            string line;
+            getline(input, line);
+            cout << line << '\n';
+        }
+    }
+    input.close();
+#endif
+}
+
+
 int main (int argc, char* argv[]) // or char** argv 
 {
-  // Install standard binary operators.
-  // 1 is lowest precedence.
-  BinopPrecedence['<'] = 10;
-  BinopPrecedence['+'] = 20;
-  BinopPrecedence['-'] = 20;
-  BinopPrecedence['*'] = 40; // highest.
+    // Install standard binary operators.
+    // 1 is lowest precedence.
+    BinopPrecedence['<'] = 10;
+    BinopPrecedence['+'] = 20;
+    BinopPrecedence['-'] = 20;
+    BinopPrecedence['*'] = 40; // highest.
 
-  // Prime the first token.
-  fprintf(stderr, "ready> ");
-  getNextToken();
+    // Prime the first token.
+    fprintf(stderr, "ready> ");
+    getNextToken();
 
   // Run the main "interpreter loop" now.
   MainLoop();
 
   return 0;
+
 }
