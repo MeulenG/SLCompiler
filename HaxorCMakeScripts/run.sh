@@ -1,3 +1,3 @@
 #! /bin/sh
 
-cd Step1_build ; ./HaxorLanguage
+cd build ; ./Haxor
